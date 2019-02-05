@@ -20,6 +20,8 @@ public class Graph<T> {
 
 
     private final Map<T, ArrayList<T>> adjacencyList;
+
+    @JsonIgnore
     private Class classType;
 
 
