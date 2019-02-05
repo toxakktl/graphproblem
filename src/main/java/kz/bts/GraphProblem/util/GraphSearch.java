@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
- * Класс для поиска пути между двумя вершинами
+ * Класс для поиска пути между двумя вершинами. Используется BFS для обхода.
  *
  * @param <T>
  */
@@ -26,6 +26,10 @@ public class GraphSearch<T> {
 
     public ArrayList<T> findPath(T source, T destination, Graph graph) {
         fullPath.clear();
+        if (source.equals(destination)){
+            fullPath.add(source);
+            return fullPath;
+        }
         logger.info("Ищем путь между вершинами " + source + " и " + destination);
         //Список путей
         ArrayList<T> path = new ArrayList<>();

@@ -78,6 +78,9 @@ public class Graph<T> {
         if (!containsVertex(v) || !containsVertex(u)){
             throw new GraphException("Заданная вершина не существует");
         }
+        if (v.equals(u)){
+            throw new GraphException("Вершины не могут быть одинаковыми.");
+        }
         if (containsEdge(v, u)){
             throw new GraphException("Заданное ребро существует");
         }
