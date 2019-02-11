@@ -1,5 +1,6 @@
 package kz.bts.GraphProblem.controllers;
 
+import kz.bts.GraphProblem.data.Graph;
 import kz.bts.GraphProblem.data.request.EdgeRequest;
 import kz.bts.GraphProblem.data.request.VertexRequest;
 import kz.bts.GraphProblem.data.response.DataResponse;
@@ -43,8 +44,8 @@ public class GraphController<T> {
 
 
     @RequestMapping(value = "/get", method = RequestMethod.GET)
-    public DataResponse getGraph(){
-        DataResponse response = new DataResponse();
+    public DataResponse<kz.bts.GraphProblem.data.Graph> getGraph(){
+        DataResponse<Graph> response = new DataResponse<>();
         response.setData(graphService.getGraph());
         response.setDescription("Текущий граф");
         response.setHttpcode(HttpStatus.OK.value());
@@ -110,8 +111,8 @@ public class GraphController<T> {
         if (result.hasErrors()){
             return graphService.handleErrors(result);
         }
-        DataResponse response = new DataResponse();
-        List path = graphService.findPath(edgeRequest.getSrc(), edgeRequest.getDst());
+        DataResponse<List<T>> response = new DataResponse<>();
+        List<T> path = graphService.findPath(edgeRequest.getSrc(), edgeRequest.getDst());
         response.setHttpcode(HttpStatus.OK.value());
         response.setDescription("Путь между " + edgeRequest.getSrc() + " и " + edgeRequest.getDst() + ".");
         response.setTimestamp(graphService.getCurrentTime());
