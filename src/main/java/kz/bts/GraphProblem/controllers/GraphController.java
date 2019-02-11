@@ -26,7 +26,7 @@ import java.util.List;
 public class GraphController<T> {
 
     @Autowired
-    private GraphService graphService;
+    private GraphService<T> graphService;
     @Autowired
     private EdgeValidator edgeValidator;
     @Autowired
@@ -53,7 +53,7 @@ public class GraphController<T> {
     }
 
     @RequestMapping(value = "/vertices/add", method = RequestMethod.POST)
-    public GeneralResponse addVertex(@RequestBody @Validated VertexRequest vertexRequest, BindingResult result) throws GraphException {
+    public GeneralResponse addVertex(@RequestBody @Validated VertexRequest<T> vertexRequest, BindingResult result) throws GraphException {
         if (result.hasErrors()){
             return graphService.handleErrors(result);
         }
@@ -67,7 +67,7 @@ public class GraphController<T> {
     }
 
     @RequestMapping(value = "/vertices/remove", method = RequestMethod.POST)
-    public GeneralResponse removeVertex(@RequestBody @Validated VertexRequest vertexRequest, BindingResult result){
+    public GeneralResponse removeVertex(@RequestBody @Validated VertexRequest<T> vertexRequest, BindingResult result){
         if (result.hasErrors()){
             return graphService.handleErrors(result);
         }
@@ -80,7 +80,7 @@ public class GraphController<T> {
     }
 
     @RequestMapping(value = "/edges/add", method = RequestMethod.POST)
-    public GeneralResponse addEdge(@RequestBody @Validated EdgeRequest edgeRequest, BindingResult result){
+    public GeneralResponse addEdge(@RequestBody @Validated EdgeRequest<T> edgeRequest, BindingResult result){
         if (result.hasErrors()){
             return graphService.handleErrors(result);
         }
@@ -93,7 +93,7 @@ public class GraphController<T> {
     }
 
     @RequestMapping(value = "/edges/remove", method = RequestMethod.POST)
-    public GeneralResponse removeEdge(@RequestBody @Validated EdgeRequest edgeRequest, BindingResult result){
+    public GeneralResponse removeEdge(@RequestBody @Validated EdgeRequest<T> edgeRequest, BindingResult result){
         if (result.hasErrors()){
             return graphService.handleErrors(result);
         }
@@ -106,7 +106,7 @@ public class GraphController<T> {
     }
 
     @RequestMapping(value = "/find", method = RequestMethod.POST)
-    public DataResponse findPath(@RequestBody @Validated EdgeRequest edgeRequest, BindingResult result){
+    public DataResponse findPath(@RequestBody @Validated EdgeRequest<T> edgeRequest, BindingResult result){
         if (result.hasErrors()){
             return graphService.handleErrors(result);
         }

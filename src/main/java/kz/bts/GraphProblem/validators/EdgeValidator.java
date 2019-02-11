@@ -44,10 +44,10 @@ public class EdgeValidator implements Validator {
         }
         if (graph.getAdjacencyList().size() > 0) {
             if (!request.getSrc().getClass().equals(graph.getClassType())) {
-                errors.rejectValue("src", "Ошибка типов. Ожидается тип входящего поля: " + graph.getClassType().getName());
+                errors.rejectValue("src", "Ошибка типов. Ожидается тип входящего поля SRC: " + graph.getClassType().getName());
             }
             if (!request.getDst().getClass().equals(graph.getClassType())) {
-                errors.rejectValue("dst", "Ошибка типов. Ожидается тип входящего поля: " + graph.getClassType().getName());
+                errors.rejectValue("dst", "Ошибка типов. Ожидается тип входящего поля DST: " + graph.getClassType().getName());
             }
         }
     }
